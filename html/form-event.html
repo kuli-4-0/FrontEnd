@@ -2,7 +2,7 @@
 
 <html
   lang="en"
-  class="light-style layout-menu-fixed"
+  class="light-style"
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="../assets/"
@@ -15,7 +15,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard Admin</title>
+    <title>Form Event Organizer</title>
 
     <meta name="description" content="" />
 
@@ -41,8 +41,6 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
-
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -54,7 +52,8 @@
   </head>
 
   <body>
-    <!-- Layout wrapper -->
+    <!-- Content -->
+
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
@@ -203,19 +202,6 @@
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
-
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -243,24 +229,15 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="pages-account-settings-notifications.html">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
                       </a>
                     </li>
                     <li>
@@ -287,32 +264,106 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
-                <div class="col-lg-8 mb-4 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-end row">
-                      <div class="col-sm-7">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary">Hello Administrator Eliseqqqq 🎉</h5>
-                          <p class="mb-4">
-                            You have <span class="fw-bold">100</span> Event Organizers, <span class="fw-bold">250</span> Events and <span class="fw-bold">500</span> Musicians in the Elise app.
-                            Check our new badge in our profile.
-                          </p>
+                <div class="col-12 mb-4 order-0">
+                  <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">Form Event</h5>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-name">Nama Event</label>
+                          <input type="text" class="form-control" id="basic-default-name" placeholder="PK Entertaitment" />
                         </div>
-                      </div>
-                      <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-4">
-                          <img
-                            src="../assets/img/illustrations/man-with-laptop-light.png"
-                            height="140"
-                            alt="View Badge User"
-                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                            data-app-light-img="illustrations/man-with-laptop-light.png"
+
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-desc">Description</label>
+                          <textarea
+                            id="basic-default-desc"
+                            class="form-control"
+                            placeholder="This Eo for ......."
+                          ></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-eo">Event Organizer</label>
+                          <div class="input-group input-group-merge">
+                            <input
+                            type="text"
+                            id="basic-default-eo"
+                            class="form-control"
+                            placeholder="PK Entertaitment"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-location">Lokasi</label>
+                          <input
+                            type="text"
+                            id="basic-default-location"
+                            class="form-control"
+                            placeholder="Jakarta, kecamatan bekasi Jl.hayul"
                           />
                         </div>
-                      </div>
+
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-date">Date</label>
+                          <input class="form-control" type="date" value="2021-06-18" id="html5-date-input" />
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-genre">Genre</label><br>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="rock" value="option1" />
+                            <label class="form-check-label" for="rock">Rock</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="pop" value="option2" />
+                            <label class="form-check-label" for="pop">Pop</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="jazz" value="option3" />
+                            <label class="form-check-label" for="jazz">Jazz</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="traditional" value="option4" />
+                            <label class="form-check-label" for="traditional">Traditional</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="dangdut" value="option5" />
+                            <label class="form-check-label" for="dangdut">Dangdut</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="hiphop" value="option6" />
+                            <label class="form-check-label" for="hiphop">Hiphop</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="reggae" value="option7" />
+                            <label class="form-check-label" for="reggae">Reggae</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="internasional" value="option7" />
+                            <label class="form-check-label" for="internasional">Internasional</label>
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-rangeValue">Range Harga Tiket</label>
+                          <select class="form-select" id="basic-default-rangeValue" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">200k~1jt</option>
+                            <option value="2">500k~1.5jt</option>
+                            <option value="3">800k~11jt</option>
+                          </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send</button>
+                      </form>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
             <!-- / Content -->
 
@@ -352,13 +403,11 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
     <script src="../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
