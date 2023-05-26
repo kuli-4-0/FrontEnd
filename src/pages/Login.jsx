@@ -10,7 +10,7 @@ function Login() {
     // TODO: Submit the form to your backend server
   };
   return (
-    <div className="container-xxl w-50 mt-5">
+    <div className="container-xxl">
       <div className="authentication-wrapper authentication-basic container-p-y">
         <div className="authentication-inner">
           {/* Register */}
@@ -18,7 +18,7 @@ function Login() {
             <div className="card-body">
               {/* Logo */}
               <div className="app-brand justify-content-center">
-                <a href="index.html" className="app-brand-link gap-2">
+                <a href="/home" className="app-brand-link gap-2">
                   <span className="app-brand-logo demo"></span>
                   <span className="app-brand-text demo text-body fw-bolder">
                     Elise
@@ -34,7 +34,7 @@ function Login() {
               <form
                 id="formAuthentication"
                 className="mb-3"
-                action="index.html"
+                action="/home"
                 method="POST"
               >
                 <div className="mb-3">
@@ -57,7 +57,7 @@ function Login() {
                     <label className="form-label" htmlFor="password">
                       Password
                     </label>
-                    <a href="auth-forgot-password-basic.html">
+                    <a href="/changePassword">
                       <small>Forgot Password?</small>
                     </a>
                   </div>
@@ -100,9 +100,14 @@ function Login() {
                   </button>
                 </div>
               </form>
+              <p class="text-center">
+                <span>New on our platform?</span>
+                <a href="/Register">
+                  <span>Create an account</span>
+                </a>
+              </p>
             </div>
           </div>
-          {/* /Register */}
         </div>
       </div>
     </div>
