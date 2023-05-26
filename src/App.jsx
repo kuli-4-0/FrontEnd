@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -11,19 +11,19 @@ import Aside from './pages/eventOrganizer/Aside';
 import Dashboard from './pages/eventOrganizer/Dashboard';
 
 function App() {
-  // useEffect(() => {
-  //   const script = document.createElement('script');
+  useEffect(() => {
+    const script = document.createElement('script');
 
-  //   script.src = "./asstes/js/main.js";
-  //   script.type = "text/babel";
-  //   script.async = true;
+    script.src = "./asstes/js/main.js";
+    script.type = "text/babel";
+    script.async = true;
 
-  //   document.body.appendChild(script);
+    document.body.appendChild(script);
 
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   }
-  // }, []);
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
   return (
     <div className="App">
       <Routes>
