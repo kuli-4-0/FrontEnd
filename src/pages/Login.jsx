@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { fetchUser } from '../features/authSlice';
+import { fetchUser, setToken } from '../features/authSlice';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -31,6 +31,8 @@ function Login() {
     try {
       const response = await axios.request(config);
       const token = response.data.token;
+
+      dispatch(setToken(token));
 
       const actionResult = await dispatch(fetchUser(token));
       const role = actionResult.payload.role;

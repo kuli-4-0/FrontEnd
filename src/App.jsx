@@ -8,21 +8,21 @@ import Register from './pages/Register';
 import Changepw from './pages/Changepw';
 import Navbar from './pages/eventOrganizer/Navbar';
 import Aside from './pages/eventOrganizer/Aside';
-import Dashboard from './pages/eventOrganizer/Dashboard';
+import Dashboard from './pages/user/Dashboard';
 
 function App() {
   useEffect(() => {
     const script = document.createElement('script');
 
-    script.src = "./asstes/js/main.js";
-    script.type = "text/babel";
+    script.src = './asstes/js/main.js';
+    script.type = 'text/babel';
     script.async = true;
 
     document.body.appendChild(script);
 
     return () => {
       document.body.removeChild(script);
-    }
+    };
   }, []);
   return (
     <div className="App">
@@ -33,12 +33,14 @@ function App() {
         <Route path="/dashboard" element={<Login />}></Route>
         <Route path="/dashboard" element={<Login />}></Route>
         <Route path="/dashboard" element={<Login />}></Route>
-        
+
+        <Route path="/user" element={<Dashboard />}></Route>
+
         {/* <Route path="/register" element={<Register />}></Route> */}
         <Route path="/register" element={<Register />}></Route>
         <Route path="/changePassword" element={<Changepw />}></Route>
       </Routes>
-          {/* <div class="layout-wrapper layout-content-navbar">
+      {/* <div class="layout-wrapper layout-content-navbar">
              <div class="layout-container">
               <Aside></Aside>
               <div class="layout-page">
