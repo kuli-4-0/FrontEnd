@@ -1,16 +1,65 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../features/authSlice';
 
-  const handleSubmit = (e) => {
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO: Submit the form to your backend server
+    let data = JSON.stringify({
+      email,
+      password,
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${process.env.REACT_APP_BASE_URL}/auth/login`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+    try {
+      const response = await axios.request(config);
+      const token = response.data.token;
+
+      const actionResult = await dispatch(fetchUser(token));
+      const role = actionResult.payload.role;
+      redirectToRolePage(role);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const redirectToRolePage = (role) => {
+    switch (role) {
+      case 'admin':
+        navigate('/admin');
+        break;
+      case 'event_organizer':
+        navigate('/event_organizer');
+        break;
+      case 'musisi':
+        navigate('/musisi');
+        break;
+      case 'user':
+        navigate('/user');
+        break;
+      default:
+        break;
+    }
   };
   return (
-    <div className="container-xxl w-50 mt-5">
+    <div className="container-xxl">
       <div className="authentication-wrapper authentication-basic container-p-y">
         <div className="authentication-inner">
           {/* Register */}
@@ -47,8 +96,8 @@ function Login() {
                     id="email"
                     name="email-username"
                     placeholder="Enter your email or username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     autoFocus
                   />
                 </div>
