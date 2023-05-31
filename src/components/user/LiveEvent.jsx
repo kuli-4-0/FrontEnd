@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function LiveEvents() {
   const [liveEvents, setLiveEvents] = useState([]);
@@ -57,6 +58,7 @@ function LiveEvents() {
                     <Card.Text>Status: {event.LiveEvent.liveStatus}</Card.Text>
                   </>
                 )}
+                <Link to={`/event/${event.id}`}>View Details</Link>
               </Card.Body>
             </Card>
           ))}

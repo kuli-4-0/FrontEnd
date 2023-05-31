@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setToken } from '../features/authSlice';
@@ -10,6 +10,18 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [error, setError] = useState('');
+  const location = useLocation();
+
+  // Mendapatkan pesan dari query parameter
+  const queryParams = new URLSearchParams(location.search);
+  const message = queryParams.get('message');
+
+  useEffect(() => {
+    if (message) {
+      setError(message);
+    }
+  }, [message]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +50,7 @@ function Login() {
       const role = actionResult.payload.role;
       redirectToRolePage(role);
     } catch (error) {
+      setError(error.response.data.message);
       console.log(error);
     }
   };
@@ -45,16 +58,16 @@ function Login() {
   const redirectToRolePage = (role) => {
     switch (role) {
       case 'admin':
-        navigate('/admin');
+        navigate('/admin/dashboard');
         break;
       case 'event_organizer':
-        navigate('/event_organizer');
+        navigate('/event_organizer/dashboard');
         break;
       case 'musisi':
-        navigate('/musisi');
+        navigate('/musisi/dashboard');
         break;
       case 'user':
-        navigate('/user');
+        navigate('/dashboard');
         break;
       default:
         break;
@@ -81,6 +94,12 @@ function Login() {
               <p className="mb-4">
                 Please sign-in to your account and start the adventure
               </p>
+
+              {error && (
+                <div className="alert alert-danger mb-3" role="alert">
+                  {error}
+                </div>
+              )}
 
               <form
                 id="formAuthentication"
@@ -151,7 +170,7 @@ function Login() {
                   </button>
                 </div>
               </form>
-              <p class="text-center">
+              <p className="text-center">
                 <span>New on our platform?</span>
                 <a href="/Register">
                   <span>Create an account</span>

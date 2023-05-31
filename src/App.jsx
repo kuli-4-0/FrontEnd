@@ -9,6 +9,8 @@ import Changepw from './pages/Changepw';
 import Navbar from './pages/eventOrganizer/Navbar';
 import Aside from './pages/eventOrganizer/Aside';
 import Dashboard from './pages/user/Dashboard';
+import EventDetail from './pages/user/EventDetail';
+
 
 function App() {
   useEffect(() => {
@@ -27,18 +29,19 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        {/* all */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-        <Route path="/dashboard" element={<Login />}></Route>
-        <Route path="/dashboard" element={<Login />}></Route>
-        <Route path="/dashboard" element={<Login />}></Route>
+        <Route path="/event/:eventId" element={<EventDetail />} />
 
-        <Route path="/user" element={<Dashboard />}></Route>
+        {/* user */}
 
-        {/* <Route path="/register" element={<Register />}></Route> */}
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/changePassword" element={<Changepw />}></Route>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/event_organizer/dashboard" element={<Dashboard />} />
+        <Route path="/musisi/dashboard" element={<Dashboard />} />
       </Routes>
       {/* <div class="layout-wrapper layout-content-navbar">
              <div class="layout-container">
