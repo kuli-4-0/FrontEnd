@@ -51,6 +51,9 @@ function Login() {
       redirectToRolePage(role);
     } catch (error) {
       setError(error.response.data.message);
+      if (error.response.data.error) {
+        setError(error.response.data.error);
+      }
       console.log(error);
     }
   };
