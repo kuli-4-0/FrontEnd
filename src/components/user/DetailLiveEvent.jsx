@@ -1,11 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import {
+  BsFillPersonFill,
+  BsCalendarFill,
+  BsGeoAlt,
+  BsBoxArrowInUpRight,
+} from 'react-icons/bs';
 
 function DetailLiveEvent() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -14,7 +21,7 @@ function DetailLiveEvent() {
       let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `http://localhost:5000/events/live/${eventId}`,
+        url: `${process.env.REACT_APP_BASE_URL}/events/live/${eventId}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -52,17 +59,38 @@ function DetailLiveEvent() {
             />
 
             <Card.Body>
-              <p className="text-end text-uppercase text-danger">{event.status}</p>
+              <p className="text-end text-uppercase text-danger">
+                {event.status}
+              </p>
               <h2 className="mb-4">{event.name}</h2>
-              <p>Location: {event.location}</p>
-              <p>Date: {formatDate(event.date)}</p>
+              <p>
+                <BsGeoAlt /> Location: {event.location}
+              </p>
+              <p>
+                <BsCalendarFill /> Date: {formatDate(event.date)}
+              </p>
               {event.LiveEvent && (
                 <>
-                  <p>Capacity: {event.LiveEvent.eventsCapacity}</p>
-                  <p>Price: {event.LiveEvent.ticketPrice}</p>
-                  <p>Status: {event.LiveEvent.liveStatus}</p>
+                  <p>
+                    <BsBoxArrowInUpRight /> Capacity:{' '}
+                    {event.LiveEvent.eventsCapacity}
+                  </p>
+                  <p>
+                    <BsFillPersonFill /> Price: {event.LiveEvent.ticketPrice}
+                  </p>
+                  <p>
+                    <BsBoxArrowInUpRight /> Status: {event.LiveEvent.liveStatus}
+                  </p>
                 </>
               )}
+
+              <Button
+                as={Link}
+                to={`/event/${eventId}/registration`}
+                variant="primary"
+              >
+                Buy Ticket
+              </Button>
             </Card.Body>
           </Card>
         </Col>
