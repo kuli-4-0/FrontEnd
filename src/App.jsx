@@ -6,11 +6,13 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Changepw from './pages/Changepw';
-import Navbar from './pages/eventOrganizer/Navbar';
-import Aside from './pages/eventOrganizer/Aside';
 import Dashboard from './pages/user/Dashboard';
-import EventDetail from './pages/user/EventDetail';
-
+import EventDetail from './pages/user/DetailLiveEvent';
+import PurchaseLiveSuccessful from './pages/user/PurchaseLiveSuccessful';
+import DetailLiveEvent from './pages/user/DetailLiveEvent';
+import ListTicketLive from './pages/user/ListTicketLive';
+import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
+import MyEvent from './pages/organizer/MyEvent';
 
 function App() {
   useEffect(() => {
@@ -34,13 +36,22 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/event/:eventId" element={<EventDetail />} />
-
         {/* user */}
-
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/event/:eventId" element={<DetailLiveEvent />} />
+        <Route
+          path="/event/:eventId/purchase-successful"
+          element={<PurchaseLiveSuccessful />}
+        />
+        <Route path="/tickets" element={<ListTicketLive />} />
+        {/* event_organizer */}
+        <Route
+          path="/event_organizer/dashboard"
+          element={<OrganizerDashboard />}
+        />
+        <Route path="/event_organizer/my-events" element={<MyEvent />} />
+
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/event_organizer/dashboard" element={<Dashboard />} />
         <Route path="/musisi/dashboard" element={<Dashboard />} />
       </Routes>
       {/* <div class="layout-wrapper layout-content-navbar">
