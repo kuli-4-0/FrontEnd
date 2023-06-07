@@ -13,6 +13,8 @@ import DetailLiveEvent from './pages/user/DetailLiveEvent';
 import ListTicketLive from './pages/user/ListTicketLive';
 import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
 import MyEvent from './pages/organizer/MyEvent';
+import EventDetailPage from './pages/organizer/EventDetailPage';
+import CreateEventPage from './pages/organizer/CreateEventPage';
 
 function App() {
   useEffect(() => {
@@ -44,12 +46,21 @@ function App() {
           element={<PurchaseLiveSuccessful />}
         />
         <Route path="/tickets" element={<ListTicketLive />} />
+
         {/* event_organizer */}
         <Route
           path="/event_organizer/dashboard"
           element={<OrganizerDashboard />}
         />
         <Route path="/event_organizer/my-events" element={<MyEvent />} />
+        <Route
+          path="/event_organizer/my-events/:eventId"
+          element={<EventDetailPage />}
+        />
+        <Route
+          path="/event_organizer/create-event"
+          element={<CreateEventPage />}
+        />
 
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/musisi/dashboard" element={<Dashboard />} />
