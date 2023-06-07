@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import {
   BsFillPersonFill,
@@ -12,6 +12,7 @@ import {
 function DetailLiveEvent() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
 
@@ -47,13 +48,36 @@ function DetailLiveEvent() {
     return new Date(dateString).toLocaleDateString('id-ID', options);
   };
 
+  const handleBuyTicket = async () => {
+    try {
+      // Lakukan logika pembelian tiket di sini
+
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: `${process.env.REACT_APP_BASE_URL}/events/live/${event.id}/live-registrations`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.request(config);
+      console.log(JSON.stringify(response.data));
+
+      // Setelah pembelian berhasil, arahkan pengguna ke halaman PurchaseLiveSuccessful
+      navigate(`/event/${eventId}/purchase-successful`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container className="text-center">
       <Row className="my-4">
         <Col md={{ span: 6, offset: 3 }}>
           <Card>
             <Card.Img
-              src={'/poster/default.jpg'}
+              src={event.poster}
               alt="Event Banner"
               className="img-fluid"
             />
@@ -84,11 +108,7 @@ function DetailLiveEvent() {
                 </>
               )}
 
-              <Button
-                as={Link}
-                to={`/event/${eventId}/registration`}
-                variant="primary"
-              >
+              <Button onClick={handleBuyTicket} variant="primary">
                 Buy Ticket
               </Button>
             </Card.Body>
