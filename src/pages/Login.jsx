@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { fetchUser, setToken } from '../features/authSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -16,12 +17,21 @@ function Login() {
   // Mendapatkan pesan dari query parameter
   const queryParams = new URLSearchParams(location.search);
   const message = queryParams.get('message');
+  const toastifyParam = queryParams.get('toastify');
 
   useEffect(() => {
     if (message) {
       setError(message);
     }
   }, [message]);
+
+  useEffect(() => {
+    if (toastifyParam == 'true') {
+      toast.info('Please verify your email before login.', {
+        autoClose: false,
+      });
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -183,6 +193,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
