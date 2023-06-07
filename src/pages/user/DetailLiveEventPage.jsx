@@ -9,8 +9,9 @@ import {
   BsBoxArrowInUpRight,
 } from 'react-icons/bs';
 import UserNav from '../../components/user/UserNav';
+import DetailLiveEvent from '../../components/user/DetailLiveEvent';
 
-function DetailLiveEvent() {
+function DetailLiveEventPage() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
@@ -75,8 +76,9 @@ function DetailLiveEvent() {
   return (
     <>
       <UserNav />
+      <DetailLiveEvent />
 
-      <Container className="text-center">
+      {/* <Container className="text-center">
         <Row className="my-4">
           <Col md={{ span: 6, offset: 3 }}>
             <Card>
@@ -120,9 +122,9 @@ function DetailLiveEvent() {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 }
 
-export default DetailLiveEvent;
+export default DetailLiveEventPage;
