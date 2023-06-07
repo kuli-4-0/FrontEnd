@@ -30,7 +30,7 @@ const ListMyEvent = () => {
   return (
     <div>
       <h1>Organizer Dashboard</h1>
-      <Link to="/create-event">Create New Event</Link>
+      <Link to="/event_organizer/create-event">Create New Event</Link>
       <h2>Your Events</h2>
       {events.map((event) => (
         <Card key={event.id} className="mb-3">
@@ -48,7 +48,11 @@ const ListMyEvent = () => {
               <br />
               <strong>Location:</strong> {event.location}
             </Card.Text>
-            <Button variant="primary" as={Link} to={`/event/${event.id}`}>
+            <Button
+              variant="primary"
+              as={Link}
+              to={`/event_organizer/my-events/${event.id}`}
+            >
               View Details
             </Button>
           </Card.Body>

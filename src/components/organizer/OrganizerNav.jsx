@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const OrganizerNav = ({ eventCount }) => {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/dashboard">
+      <Navbar.Brand as={Link} to="/event_organizer/dashboard">
         Organizer Dashboard
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
