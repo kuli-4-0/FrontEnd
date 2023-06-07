@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Nav, Navbar, Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const OrganizerNav = ({ eventCount }) => {
   const authState = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Cek peran dan arahkan pengguna ke dashboard yang sesuai
+    try {
+      if (
+        !authState ||
+        !authState.user ||
+        !authState.user.role ||
+        authState.user.role !== 'event_organizer'
+      ) {
+        throw new Error('Unauthorized');
+      }
+    } catch (error) {
+      navigate('/login?message=Unauthorized');
+    }
+  }, [navigate, authState]);
+
+  const handleLogout = async () => {
+    localStorage.clear();
+    navigate('/');
+    window.location.reload(false);
+  };
 
   return (
     <Navbar bg="light" expand="lg">
@@ -23,8 +46,11 @@ const OrganizerNav = ({ eventCount }) => {
               {eventCount}
             </Badge>
           </Nav.Link>
+          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
         </Nav>
-        <Navbar.Text>{authState.user.name}</Navbar.Text>
+        <Navbar.Text className="pe-3" style={{ marginLeft: 'auto' }}>
+          {authState.user.name}
+        </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
   );

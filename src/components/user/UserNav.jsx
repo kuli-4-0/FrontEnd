@@ -55,30 +55,36 @@ function UserNav() {
 
   return (
     <Navbar bg="primary" variant="dark" style={{ marginBottom: '20px' }}>
-      <Navbar.Brand as={Link} to="/home">
+      <Navbar.Brand as={Link} to="/dashboard">
         My Dashboard
       </Navbar.Brand>
-      <Nav className="ml-auto">
-        <Nav.Link as={Link} to="/dashboard">
-          Home
-        </Nav.Link>
-        <Nav.Link as={Link} to="/search">
-          Search
-        </Nav.Link>
-        <Nav.Link as={Link} to="/event">
-          Event
-        </Nav.Link>
-        <Nav.Link as={Link} to="/tickets">
-          My Tickets
-          <Badge variant="light" style={{ marginLeft: '5px' }}>
-            {ticketCount}
-          </Badge>
-        </Nav.Link>
-        <Nav.Link as={Link} to="/profile">
-          Profile
-        </Nav.Link>
-        <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-      </Nav>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          {/* <Nav.Link as={Link} to="/dashboard">
+            Home
+          </Nav.Link> */}
+          {/* <Nav.Link as={Link} to="/search">
+            Search
+          </Nav.Link> */}
+          <Nav.Link as={Link} to="/event">
+            Event
+          </Nav.Link>
+          <Nav.Link as={Link} to="/tickets">
+            My Tickets
+            <Badge variant="light" style={{ marginLeft: '5px' }}>
+              {ticketCount}
+            </Badge>
+          </Nav.Link>
+          {/* <Nav.Link as={Link} to="/profile">
+            Profile
+          </Nav.Link> */}
+          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+        </Nav>
+        <Navbar.Text className="pe-3" style={{ marginLeft: 'auto' }}>
+          {authState.user && authState.user.name}
+        </Navbar.Text>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
