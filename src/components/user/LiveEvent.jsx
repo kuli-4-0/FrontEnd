@@ -43,7 +43,7 @@ function LiveEvents() {
         {liveEvents.length > 0 &&
           liveEvents.map((event) => (
             <Card key={event.id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={'./poster/default.jpg'} />
+              <Card.Img variant="top" src={event.poster} />
               <Card.Body>
                 <Card.Title>{event.name}</Card.Title>
                 <Card.Text>{event.location}</Card.Text>

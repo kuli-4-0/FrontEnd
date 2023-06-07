@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div>
       <UserNav />
-      <LiveEvents />
+      <h1>ini dashboard</h1>
     </div>
   );
 };
