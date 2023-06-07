@@ -7,14 +7,15 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Changepw from './pages/Changepw';
 import Dashboard from './pages/user/Dashboard';
-import EventDetail from './pages/user/DetailLiveEvent';
+import EventDetail from './pages/user/DetailLiveEventPage';
 import PurchaseLiveSuccessful from './pages/user/PurchaseLiveSuccessful';
-import DetailLiveEvent from './pages/user/DetailLiveEvent';
 import ListTicketLive from './pages/user/ListTicketLive';
 import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
 import MyEvent from './pages/organizer/MyEvent';
 import EventDetailPage from './pages/organizer/EventDetailPage';
 import CreateEventPage from './pages/organizer/CreateEventPage';
+import DetailLiveEventPage from './pages/user/DetailLiveEventPage';
+import ListEventPage from './pages/user/ListEventPage';
 
 function App() {
   useEffect(() => {
@@ -40,7 +41,8 @@ function App() {
 
         {/* user */}
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/event/:eventId" element={<DetailLiveEvent />} />
+        <Route path="/event" element={<ListEventPage />} />
+        <Route path="/event/:eventId" element={<DetailLiveEventPage />} />
         <Route
           path="/event/:eventId/purchase-successful"
           element={<PurchaseLiveSuccessful />}
