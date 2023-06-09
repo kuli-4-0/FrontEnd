@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 function LiveEvents() {
   const [liveEvents, setLiveEvents] = useState([]);
@@ -37,14 +38,24 @@ function LiveEvents() {
   };
 
   return (
-    <Container>
+    <Container className="my-4">
       <h2>Live Events</h2>
       <Row>
         {liveEvents.length > 0 &&
           liveEvents.map((event) => (
-            <Card key={event.id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={event.poster} />
-              <Card.Body>
+            <Card
+              as={Link}
+              to={`/event/${event.id}`}
+              key={event.id}
+              className="mb-3 event-card"
+              style={{ width: '18rem', margin: '10px', padding: '10px' }}
+            >
+              <Card.Img
+                variant="top"
+                src={event.poster}
+                style={{ height: '200px', objectFit: 'cover' }}
+              />
+              <Card.Body style={{ color: 'black' }}>
                 <Card.Title>{event.name}</Card.Title>
                 <Card.Text>{event.location}</Card.Text>
                 <Card.Text>{formatDate(event.date)}</Card.Text>
@@ -58,7 +69,7 @@ function LiveEvents() {
                     <Card.Text>Status: {event.LiveEvent.liveStatus}</Card.Text>
                   </>
                 )}
-                <Link to={`/event/${event.id}`}>View Details</Link>
+                {/* <Link to={`/event/${event.id}`}>View Details</Link> */}
               </Card.Body>
             </Card>
           ))}

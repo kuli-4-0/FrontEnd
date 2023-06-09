@@ -34,6 +34,7 @@ const CreateEvent = () => {
     formData.append('location', location);
     formData.append('date', date);
     formData.append('poster', poster);
+    formData.append('genre', genre);
     formData.append('status', eventType);
 
     if (eventType === 'Live') {
@@ -47,7 +48,6 @@ const CreateEvent = () => {
       formData.append('auditionNeeds', auditionNeeds);
       formData.append('salary', salary);
       formData.append('requirements', requirements);
-      formData.append('genre', genre);
       formData.append('numberOfMusicians', numberOfMusicians);
       formData.append('auditionStatus', auditionStatus);
     }
@@ -142,7 +142,7 @@ const CreateEvent = () => {
               />
             </Form.Group>
             <Form.Group controlId="poster">
-              <Form.Label className='me-3'>Poster</Form.Label>
+              <Form.Label className="me-3">Poster</Form.Label>
               <Form.Text className="text-muted">
                 Please upload a banner or horizontal rectangular image for the
                 poster (minimum size: 800px x 376px).
@@ -151,6 +151,14 @@ const CreateEvent = () => {
                 type="file"
                 accept="image/*"
                 onChange={handlePosterUpload}
+              />
+            </Form.Group>
+            <Form.Group controlId="genre">
+              <Form.Label>Genre</Form.Label>
+              <Form.Control
+                type="text"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
               />
             </Form.Group>
 
@@ -235,14 +243,6 @@ const CreateEvent = () => {
                     type="text"
                     value={requirements}
                     onChange={(e) => setRequirements(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group controlId="genre">
-                  <Form.Label>Genre</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group controlId="numberOfMusicians">

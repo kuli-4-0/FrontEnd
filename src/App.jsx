@@ -16,6 +16,7 @@ import EventDetailPage from './pages/organizer/EventDetailPage';
 import CreateEventPage from './pages/organizer/CreateEventPage';
 import DetailLiveEventPage from './pages/user/DetailLiveEventPage';
 import ListEventPage from './pages/user/ListEventPage';
+import { MusisiDashboard } from './pages/musisi/MusisiDashboard';
 
 function App() {
   useEffect(() => {
@@ -64,8 +65,11 @@ function App() {
           element={<CreateEventPage />}
         />
 
+        {/* musisi */}
+        <Route path="/musisi/dashboard" element={<MusisiDashboard />} />
+
+
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/musisi/dashboard" element={<Dashboard />} />
       </Routes>
       {/* <div class="layout-wrapper layout-content-navbar">
              <div class="layout-container">

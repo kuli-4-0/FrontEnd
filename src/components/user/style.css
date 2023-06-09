@@ -1,0 +1,8 @@
+.event-card {
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
