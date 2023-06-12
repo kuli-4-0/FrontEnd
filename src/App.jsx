@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Changepw from './pages/Changepw';
-import Dashboard from './pages/user/Dashboard';
-import EventDetail from './pages/user/DetailLiveEventPage';
 import PurchaseLiveSuccessful from './pages/user/PurchaseLiveSuccessful';
 import ListTicketLive from './pages/user/ListTicketLive';
 import OrganizerDashboard from './pages/organizer/OrganizerDashboard';
@@ -17,6 +13,7 @@ import CreateEventPage from './pages/organizer/CreateEventPage';
 import DetailLiveEventPage from './pages/user/DetailLiveEventPage';
 import ListEventPage from './pages/user/ListEventPage';
 import { MusisiDashboard } from './pages/musisi/MusisiDashboard';
+import DashboardPage from './pages/user/DashboardPage';
 
 function App() {
   useEffect(() => {
@@ -41,7 +38,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* user */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/event" element={<ListEventPage />} />
         <Route path="/event/:eventId" element={<DetailLiveEventPage />} />
         <Route
@@ -68,8 +65,7 @@ function App() {
         {/* musisi */}
         <Route path="/musisi/dashboard" element={<MusisiDashboard />} />
 
-
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/dashboard" element={<DashboardPage />} />
       </Routes>
       {/* <div class="layout-wrapper layout-content-navbar">
              <div class="layout-container">

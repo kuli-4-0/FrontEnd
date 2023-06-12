@@ -1,14 +1,15 @@
 import React from 'react';
 import LiveEvents from '../../components/user/LiveEvent';
 import UserNav from '../../components/user/UserNav';
+import Dashboard from '../../components/user/Dashboard';
 
-const Dashboard = () => {
+const DashboardPage = () => {
   return (
     <div>
       <UserNav />
-      <h1>ini dashboard</h1>
+      <Dashboard />
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

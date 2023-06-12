@@ -53,7 +53,16 @@ const EventDetail = () => {
         style={{ minHeight: '100vh' }}
       >
         <Card>
-          <Card.Img variant="top" src={event.poster} alt="Event Poster" />
+          <Card.Img
+            style={{
+              minHeight: '200px',
+              maxHeight: '400px',
+              objectFit: 'cover',
+            }}
+            variant="top"
+            src={event.poster}
+            alt="Event Poster"
+          />
           <Card.Body>
             <Card.Title className="d-flex align-items-center">
               {event.name}
