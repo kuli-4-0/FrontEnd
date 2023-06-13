@@ -47,9 +47,14 @@ const Dashboard = () => {
     setSelectedGenre(genre);
   };
 
+  // Fungsi untuk mengubah format tanggal
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('id-ID', options);
+  };
+
   return (
     <Container className="my-4">
-      <h2>Dashboard</h2>
       <Row className="justify-content-center">
         <Col xs={12} className="text-center mb-4">
           <h3>Genres</h3>
@@ -83,11 +88,11 @@ const Dashboard = () => {
                     />
                     <div className="event-details" style={{ color: 'black' }}>
                       <h5>{event.nama_event}</h5>
+                      <p>Price: {event.harga_tiket}</p>
+                      <p>Date: {formatDate(event.date)}</p>
                       <p>{event.location}</p>
-                      <p>Date: {event.date}</p>
                       <p>Duration: {event.durasi} hours</p>
                       <p>Genre: {event.genre}</p>
-                      <p>Price: {event.harga_tiket}</p>
                     </div>
                   </Card>
                 </Col>
