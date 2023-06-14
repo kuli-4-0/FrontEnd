@@ -5,6 +5,15 @@ import jsondata from './ml.json';
 import { Link } from 'react-router-dom';
 import './style.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCalendar,
+  faDollarSign,
+  faCalendarAlt,
+  faMapMarkerAlt,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons';
+
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -53,6 +62,10 @@ const Dashboard = () => {
     return new Date(dateString).toLocaleDateString('id-ID', options);
   };
 
+  const eventDate = new Date('2023-06-12T02:55:33.000Z');
+  const eventTime = eventDate.getHours();
+  console.log(eventTime); // Output: 2
+
   return (
     <Container className="my-4">
       <Row className="justify-content-center">
@@ -86,13 +99,30 @@ const Dashboard = () => {
                       alt="Event Poster"
                       style={{ height: '120px', objectFit: 'cover' }}
                     />
-                    <div className="event-details" style={{ color: 'black' }}>
+                    <div className="event-details p-2" style={{ color: 'black' }}>
                       <h5>{event.nama_event}</h5>
-                      <p>Price: {event.harga_tiket}</p>
-                      <p>Date: {formatDate(event.date)}</p>
-                      <p>{event.location}</p>
-                      <p>Duration: {event.durasi} hours</p>
-                      <p>Genre: {event.genre}</p>
+                      <p>
+                        Start from <br /> Rp{' '}
+                        {event.harga_tiket.toLocaleString('id-ID')}
+                      </p>
+                      <p>
+                        <FontAwesomeIcon
+                          icon={faCalendarAlt}
+                          className="icon me-2"
+                        />
+                        {formatDate(event.date)}
+                      </p>
+                      <p>
+                        <FontAwesomeIcon
+                          icon={faMapMarkerAlt}
+                          className="icon me-2"
+                        />
+                        {event.location}
+                      </p>
+                      <p>
+                        <FontAwesomeIcon icon={faClock} className="icon me-2" />
+                        {event.durasi} hours
+                      </p>
                     </div>
                   </Card>
                 </Col>

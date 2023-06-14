@@ -8,6 +8,8 @@ import {
   BsGeoAlt,
   BsBoxArrowInUpRight,
 } from 'react-icons/bs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 function DetailLiveEvent() {
   const { eventId } = useParams();
@@ -30,6 +32,7 @@ function DetailLiveEvent() {
       try {
         const response = await axios.request(config);
         setEvent(response.data.data[0]);
+        console.log(response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -72,45 +75,62 @@ function DetailLiveEvent() {
   };
 
   return (
-    <Container className="text-center">
+    <Container className="text-left">
       <Row className="my-4">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card className="p-5 pb-0">
+            <h2
+              className="mb-4"
+              style={{ fontSize: '28px', fontWeight: 'bold' }}
+            >
+              {event.name}
+            </h2>
             <Card.Img
               src={event.poster}
               alt="Event Banner"
               className="img-fluid"
             />
 
-            <Card.Body>
-              <p className="text-end text-uppercase text-danger">
-                {event.status}
-              </p>
-              <h2 className="mb-4">{event.name}</h2>
+            <Card.Body className="text-left">
+              <div className="d-flex justify-content-between">
+                <p className="w-50 text-uppercase text-start">
+                  <small>{event.genre}</small>
+                </p>
+                <p className="w-50 text-uppercase text-danger text-end">
+                  <small>{event.status}</small>
+                </p>
+              </div>
+
+              <h2>{event.LiveEvent.musicianName}</h2>
               <p>
-                <BsGeoAlt /> Location: {event.location}
+                <BsGeoAlt /> {event.location}
               </p>
               <p>
-                <BsCalendarFill /> Date: {formatDate(event.date)}
+                <BsCalendarFill /> {formatDate(event.date)}
               </p>
               {event.LiveEvent && (
                 <>
                   <p>
+                    <FontAwesomeIcon icon={faClock} className="icon" />
+                    {event.LiveEvent.duration} hours
+                  </p>
+                  <p>
                     <BsBoxArrowInUpRight /> Capacity:{' '}
                     {event.LiveEvent.eventsCapacity}
                   </p>
-                  <p>
-                    <BsFillPersonFill /> Price: {event.LiveEvent.ticketPrice}
-                  </p>
-                  <p>
-                    <BsBoxArrowInUpRight /> Status: {event.LiveEvent.liveStatus}
+                  <p className="text-center">
+                    {event.LiveEvent.liveStatus}
+                    <br />
+                    <Button
+                      className="align-center"
+                      onClick={handleBuyTicket}
+                      variant="primary"
+                    >
+                      Buy Ticket - Rp{event.LiveEvent.ticketPrice}
+                    </Button>
                   </p>
                 </>
               )}
-
-              <Button onClick={handleBuyTicket} variant="primary">
-                Buy Ticket
-              </Button>
             </Card.Body>
           </Card>
         </Col>
