@@ -31,12 +31,19 @@ const ListTicketLive = () => {
 
     fetchData();
   }, []);
+
+  // Fungsi untuk mengubah format tanggal
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('id-ID', options);
+  };
+
   console.log(eventData);
   return (
     <>
       <UserNav />
       <Container>
-        <h1>Event Data</h1>
+        <h1>Your Ticket</h1>
         {eventData ? (
           eventData.map((event) => (
             <Card key={event.id} className="mb-4">
@@ -45,7 +52,7 @@ const ListTicketLive = () => {
                 <ListGroup variant="flush">
                   <ListGroup.Item>ID: {event.id}</ListGroup.Item>
                   <ListGroup.Item>
-                    Date: {event.LiveEvent.Event.date}
+                    Date: {formatDate(event.LiveEvent.Event.date)}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     Location: {event.LiveEvent.Event.location}
