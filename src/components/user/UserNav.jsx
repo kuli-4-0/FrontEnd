@@ -33,7 +33,7 @@ function UserNav() {
 
   const handleLogout = async () => {
     localStorage.clear();
-    navigate('/');
+    navigate('/login');
     window.location.reload(false);
   };
 
